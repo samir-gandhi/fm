@@ -1,0 +1,3 @@
+FROM pingidentity/pingdatagovernance:edge
+
+COPY pingdatagovernance /opt/in
