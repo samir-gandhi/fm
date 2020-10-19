@@ -37,6 +37,9 @@ dsconfig set-connection-handler-prop \
     --set key-manager-provider:JKS \
     --set 'trust-manager-provider:Blind Trust'
 
+dsconfig set-connection-handler-prop \
+    --handler-name "HTTP Connection Handler" \
+    --set enabled:true \
 
 #
 # Status:Configuring Store Adapters

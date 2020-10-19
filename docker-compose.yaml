@@ -5,14 +5,16 @@ services:
   pingdatagovernance:
     image: samirgandhi/pingdatagoverance:dgpap
     command: wait-for pingdirectory:389 -t 300 -- entrypoint.sh start-server
-    # environment:
+    environment:
+      - HTTP_PORT="80"
+      - MUTE_LICENSE_VERFICATION=yes
     #   - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
     #   - SERVER_PROFILE_PATH=pdg-pap-integration/pingdatagovernance
     #   - SERVER_PROFILE_PARENT=PDG
     #   - SERVER_PROFILE_PDG_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
     #   - SERVER_PROFILE_PDG_PATH=baseline/pingdatagovernance
-    env_file:
-      - ${HOME}/.pingidentity/devops
+    # env_file:
+    #   - ${HOME}/.pingidentity/devops
     ulimits:
       nproc:
         soft: 16384
@@ -21,7 +23,7 @@ services:
         soft: 65535
         hard: 65535
     ports:
-      - "8080:80"
+      - "9080:80"
       - "7443:443"
     networks:
       - pingnet-dmz
@@ -37,6 +39,9 @@ services:
       # - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
       # - SERVER_PROFILE_PATH=pdg-pap-integration/pingdatagovernancepap
       - HTTPS_PORT=8443
+      - HTTP_PORT=8080
+      - VERBOSE=true
+      - MUTE_LICENSE_VERFICATION=yes
     env_file:
       - ${HOME}/.pingidentity/devops
     ulimits:
@@ -48,6 +53,7 @@ services:
         hard: 65535
     ports:
       - "8443:8443"
+      - "8080:8080"
     networks:
       - pingnet-dmz
     # volumes:

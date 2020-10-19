@@ -1,3 +1,7 @@
 FROM pingidentity/pingdatagovernancepap:edge
 
 COPY pingdatagovernancepap /opt/in
+
+COPY liveness.sh /opt/liveness.sh
+
+EXPOSE 8080
