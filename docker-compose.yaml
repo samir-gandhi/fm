@@ -13,8 +13,8 @@ services:
     #   - SERVER_PROFILE_PARENT=PDG
     #   - SERVER_PROFILE_PDG_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
     #   - SERVER_PROFILE_PDG_PATH=baseline/pingdatagovernance
-    # env_file:
-    #   - ${HOME}/.pingidentity/devops
+    env_file:
+      - ${HOME}/.pingidentity/devops
     ulimits:
       nproc:
         soft: 16384
