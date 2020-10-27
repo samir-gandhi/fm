@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: NetworkPolicy
+metadata:
+  creationTimestamp: null
+  name: fm_pingnet-dmz
+spec:
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          io.kompose.network/fm_pingnet-dmz: "true"
+  podSelector:
+    matchLabels:
+      io.kompose.network/fm_pingnet-dmz: "true"

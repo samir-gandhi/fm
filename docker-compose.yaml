@@ -1,4 +1,4 @@
-version: "2.4"
+version: "2"
 # The server profiles used in this example are intended for use with edge versions of the product image only.
 
 services:
@@ -75,8 +75,8 @@ services:
         soft: 65535
         hard: 65535
     ports:
-      - 1636-1646:636
-      - 1443-1453:443
+      - 1636:636
+      - 1443:443
     networks:
       - pingnet-internal
     # volumes:

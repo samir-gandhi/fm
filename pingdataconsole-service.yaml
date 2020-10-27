@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: pingdataconsole
+  name: pingdataconsole
+spec:
+  ports:
+  - name: "9443"
+    port: 9443
+    targetPort: 8443
+  selector:
+    io.kompose.service: pingdataconsole
+status:
+  loadBalancer: {}

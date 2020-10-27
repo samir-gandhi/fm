@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: pingdatagovernancepap
+  name: pingdatagovernancepap
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: pingdatagovernancepap
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/fm_pingnet-dmz: "true"
+        io.kompose.service: pingdatagovernancepap
+    spec:
+      containers:
+      - env:
+        - name: HTTPS_PORT
+          value: "8443"
+        - name: HTTP_PORT
+          value: "8080"
+        - name: MUTE_LICENSE_VERFICATION
+          value: yes
+        - name: PI4API
+          value: test1234
+        - name: PING_IDENTITY_ACCEPT_EULA
+          value: YES
+        - name: PING_IDENTITY_DEVOPS_DNS_ZONE
+          value: ping-devops.com
+        - name: PING_IDENTITY_DEVOPS_HOME
+          value: /Users/joezanini/projects/devops
+        - name: PING_IDENTITY_DEVOPS_KEY
+          value: 4c19deb6-9c46-4076-83eb-37c79be3c4ae
+        - name: PING_IDENTITY_DEVOPS_REGION
+          value: us-east-2
+        - name: PING_IDENTITY_DEVOPS_REGISTRY
+          value: docker.io/pingidentity
+        - name: PING_IDENTITY_DEVOPS_TAG
+          value: "2008"
+        - name: PING_IDENTITY_DEVOPS_USER
+          value: joezanini@pingidentity.com
+        - name: PING_IDENTITY_K8S_CLUSTER_NAME
+          value: ping-dev-aws-us-east-2
+        - name: PING_IDENTITY_K8S_NAMESPACE
+          value: ping-cloud-devops-eks-joezanini
+        - name: VERBOSE
+          value: "true"
+        image: samirgandhi/pingdatagoverancepap:dgpap
+        imagePullPolicy: ""
+        name: pingdatagovernancepap
+        ports:
+        - containerPort: 8443
+        - containerPort: 8080
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
